@@ -134,10 +134,10 @@
           <span class="text-secondary font-label tracking-[0.2em] uppercase text-xs font-bold">Safe Haven</span>
           <h1 class="text-4xl md:text-5xl font-headline font-extrabold tracking-tighter text-on-surface">Youth Entry
           </h1>
-          <p class="text-on-surface-variant text-lg max-w-sm mx-auto">Welcome to your digital sanctuary. Connect, share,
+          <p class="text-on-surface-variant text-lg max-w-sm mx-auto">Welcome to your private user hub. Connect, share,
             and find support in a space designed just for you.</p>
         </div>
-        <form class="w-full space-y-6 max-w-sm text-left">
+        <form class="w-full space-y-6 max-w-sm text-left" action="user_dashboard.html">
           <div class="space-y-2">
             <label class="text-sm font-label text-on-surface-variant ml-2">Username or Email</label>
             <div class="relative group">
@@ -268,25 +268,179 @@
       </div>
     </div>
   </main>
-  <!-- Footer -->
+
+  <!-- Overlays / Modals -->
+  <div id="overlay-container" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-3xl bg-background/60">
+    <div id="overlay-content" class="glass-panel w-full max-w-4xl p-10 md:p-16 rounded-[4rem] border border-white/10 shadow-3xl relative animate-in zoom-in duration-500">
+      <button onclick="closeOverlay()" class="absolute top-8 right-8 p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all">
+        <span class="material-symbols-outlined text-slate-400">close</span>
+      </button>
+      <div id="overlay-inner-content" class="space-y-8">
+        <!-- Content injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
   <footer class="bg-[#00161c] w-full py-12 border-t border-white/5">
     <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-6">
       <div class="flex flex-col items-center md:items-start space-y-2">
         <div class="text-[#ffb869] font-bold font-headline text-xl">YouthLink</div>
-        <p class="font-['Manrope'] text-sm tracking-wide text-slate-500">© 2026 YouthLink. A Digital Sanctuary.</p>
+        <p class="font-['Manrope'] text-sm tracking-wide text-slate-500">© 2026 YouthLink. A Private User Hub.</p>
       </div>
       <div class="flex flex-wrap justify-center gap-6">
-        <a class="font-['Manrope'] text-sm tracking-wide text-slate-500 hover:text-[#ffb869] transition-colors"
-          href="#">Privacy Policy</a>
-        <a class="font-['Manrope'] text-sm tracking-wide text-slate-500 hover:text-[#ffb869] transition-colors"
-          href="#">Terms of Service</a>
-        <a class="font-['Manrope'] text-sm tracking-wide text-slate-500 hover:text-[#ffb869] transition-colors"
-          href="#">Safety Center</a>
-        <a class="font-['Manrope'] text-sm tracking-wide text-slate-500 hover:text-[#ffb869] transition-colors"
-          href="#">Contact Us</a>
+        <a class="font-['Manrope'] text-sm tracking-wide text-slate-500 hover:text-[#ffb869] transition-colors" href="#">Privacy Policy</a>
+        <a class="font-['Manrope'] text-sm tracking-wide text-slate-500 hover:text-[#ffb869] transition-colors" href="#">Terms of Service</a>
+        <a class="font-['Manrope'] text-sm tracking-wide text-slate-500 hover:text-[#ffb869] transition-colors" href="#">Safety Center</a>
+        <a class="font-['Manrope'] text-sm tracking-wide text-slate-500 hover:text-[#ffb869] transition-colors" href="#">Contact Us</a>
       </div>
     </div>
   </footer>
+
+
+  <script>
+    const OVERLAYS = {
+      mission: {
+        title: "Our Mission",
+        subtitle: "Bridging the Gap between Pressure and Support",
+        content: `
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="space-y-6">
+              <p class="text-on-surface-variant text-lg leading-relaxed">We exist to ensure that no student ever feels invisible in their struggle. YouthLink is the bridge between the academic pressure cooker and a safe, resilient mind.</p>
+              <ul class="space-y-4">
+                <li class="flex gap-4 items-center">
+                  <span class="material-symbols-outlined text-primary">verified</span>
+                  <span class="font-bold">Anonymity First Architecture</span>
+                </li>
+                <li class="flex gap-4 items-center">
+                  <span class="material-symbols-outlined text-secondary">verified</span>
+                  <span class="font-bold">Verified Mentor Connectivity</span>
+                </li>
+                <li class="flex gap-4 items-center">
+                  <span class="material-symbols-outlined text-tertiary">verified</span>
+                  <span class="font-bold">Emotional Intelligence Core</span>
+                </li>
+              </ul>
+            </div>
+            <div class="glass-panel p-8 rounded-[3rem] border-secondary/20 bg-secondary/5">
+              <h4 class="text-xl font-black mb-4">The Vision</h4>
+              <p class="text-sm text-slate-400">To create a global network of private user hubs where empathy is the primary currency and wellbeing is the only metric that matters.</p>
+            </div>
+          </div>
+        `
+      },
+      works: {
+        title: "How it Works",
+        subtitle: "The 3 Stages of the User Protocol",
+        content: `
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="space-y-4 text-center">
+              <div class="w-16 h-16 bg-primary/10 border border-primary/20 rounded-2xl flex items-center justify-center text-primary mx-auto">
+                <span class="material-symbols-outlined text-3xl">psychology</span>
+              </div>
+              <h4 class="font-black">1. Reflect</h4>
+              <p class="text-xs text-slate-500">Log your emotional signatures through journaling and AI-driven check-ins.</p>
+            </div>
+            <div class="space-y-4 text-center">
+              <div class="w-16 h-16 bg-secondary/10 border border-secondary/20 rounded-2xl flex items-center justify-center text-secondary mx-auto">
+                <span class="material-symbols-outlined text-3xl">hub</span>
+              </div>
+              <h4 class="font-black">2. Connect</h4>
+              <p class="text-xs text-slate-500">Engage with empathetic AI companions or secure human mentor uplinks.</p>
+            </div>
+            <div class="space-y-4 text-center">
+              <div class="w-16 h-16 bg-tertiary/10 border border-tertiary/20 rounded-2xl flex items-center justify-center text-tertiary mx-auto">
+                <span class="material-symbols-outlined text-3xl">trending_up</span>
+              </div>
+              <h4 class="font-black">3. Evolve</h4>
+              <p class="text-xs text-slate-500">Visualize your resilience trends and optimize your integrity for a stable future.</p>
+            </div>
+          </div>
+        `
+      },
+      resources: {
+        title: "Public Resources",
+        subtitle: "Tactical Mental Health Toolkits",
+        content: `
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-6 glass-panel border border-white/5 rounded-3xl hover:border-primary/40 transition-all cursor-pointer">
+              <h4 class="font-bold flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-primary">menu_book</span> Academic Stress Kit</h4>
+              <p class="text-xs text-slate-400">Managing exam clusters and productivity burnout protocols.</p>
+            </div>
+            <div class="p-6 glass-panel border border-white/5 rounded-3xl hover:border-secondary/40 transition-all cursor-pointer">
+              <h4 class="font-bold flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-secondary">self_improvement</span> Breathwork 2.0</h4>
+              <p class="text-xs text-slate-400">Advanced 4-7-8 and Box breathing for immediate nervous system resets.</p>
+            </div>
+            <div class="p-6 glass-panel border border-white/5 rounded-3xl hover:border-tertiary/40 transition-all cursor-pointer">
+              <h4 class="font-bold flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-tertiary">shield</span> Digital Boundaries</h4>
+              <p class="text-xs text-slate-400">How to disconnect and reclaim your attention in a noise-heavy world.</p>
+            </div>
+            <div class="p-6 glass-panel border border-white/5 rounded-3xl hover:border-error/40 transition-all cursor-pointer">
+              <h4 class="font-bold flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-error">diversity_3</span> Peer Support 101</h4>
+              <p class="text-xs text-slate-400">Learn how to listen and bridge your friends to professional help.</p>
+            </div>
+          </div>
+        `
+      },
+      help: {
+        title: "Get Immediate Help",
+        subtitle: "Global Crisis Protocols & Human Bridges",
+        content: `
+          <div class="p-8 glass-panel border-error/20 bg-error/5 rounded-[3rem] space-y-8">
+            <div class="flex items-center gap-6">
+              <div class="w-16 h-16 rounded-full bg-error text-white flex items-center justify-center animate-pulse">
+                <span class="material-symbols-outlined text-4xl font-black">emergency</span>
+              </div>
+              <h4 class="text-2xl font-black">Emergency Action Required?</h4>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="p-6 bg-slate-background rounded-2xl space-y-2">
+                <span class="text-[10px] font-black text-rose-500 uppercase tracking-widest">Global Helpline</span>
+                <p class="text-2xl font-black">988</p>
+                <p class="text-[10px] text-slate-500">Suicide & Crisis Lifeline (US/Canada)</p>
+              </div>
+              <div class="p-6 bg-slate-background rounded-2xl space-y-2">
+                <span class="text-[10px] font-black text-rose-500 uppercase tracking-widest">Text Bridge</span>
+                <p class="text-2xl font-black">HOME to 741741</p>
+                <p class="text-[10px] text-slate-500">Crisis Text Line (Global)</p>
+              </div>
+            </div>
+            <p class="text-sm text-slate-400 text-center italic">"You are not alone. There is always a bridge back to the shore."</p>
+          </div>
+        `
+      }
+    };
+
+    function openOverlay(key) {
+      const data = OVERLAYS[key];
+      if (!data) return;
+      const inner = document.getElementById('overlay-inner-content');
+      inner.innerHTML = `
+        <div class="space-y-4">
+          <h2 class="text-5xl font-black font-headline text-white">${data.title}</h2>
+          <p class="text-xl text-teal-400 font-bold">${data.subtitle}</p>
+        </div>
+        <div class="pt-6 border-t border-white/5">
+          ${data.content}
+        </div>
+      `;
+      document.getElementById('overlay-container').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeOverlay() {
+      document.getElementById('overlay-container').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Connect Nav items
+    document.querySelectorAll('nav a').forEach((a, i) => {
+      const keys = ['mission', 'works', 'resources'];
+      a.href = "javascript:void(0)";
+      a.onclick = () => openOverlay(keys[i]);
+    });
+    document.querySelector('header button').onclick = () => openOverlay('help');
+  </script>
 </body>
 
 </html>

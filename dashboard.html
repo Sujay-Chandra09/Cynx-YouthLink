@@ -90,6 +90,24 @@
             grid-template-columns: repeat(12, 1fr);
             gap: 1.5rem;
         }
+        
+        .tilt-element {
+            transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(68, 216, 241, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 100;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            transition: width 0.3s, height 0.3s;
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -200,7 +218,7 @@
 </header>
 <div class="bento-grid">
 <!-- Early Warning Triage Section -->
-<section id="triage-section" class="col-span-12 lg:col-span-7 bg-surface-container-low rounded-xl p-6 shadow-sm border border-outline-variant/5">
+<section id="triage-section" class="tilt-element col-span-12 lg:col-span-7 bg-surface-container-low rounded-xl p-6 shadow-sm border border-outline-variant/5">
 <div class="flex items-center justify-between mb-6">
 <div class="flex items-center gap-3">
 <span class="material-symbols-outlined text-tertiary" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
@@ -246,10 +264,31 @@
                                 Review Data
                             </button>
 </div>
+
+<!-- AI ASSESSMENT FEED (LIVE) -->
+<div class="group flex flex-col md:flex-row items-start md:items-center justify-between p-5 bg-primary/5 rounded-xl border border-primary/20 animate-pulse transition-all duration-300 hover:ring-1 hover:ring-primary/40">
+<div class="flex items-center gap-4 mb-4 md:mb-0">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary" data-icon="robot_2">robot_2</span>
+</div>
+<div>
+<h3 class="font-bold text-white font-headline">Nature #2124 (Live AI Stream)</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 rounded-full bg-teal-500 shadow-[0_0_10px_rgba(20,184,166,0.8)]"></span>
+<p class="text-xs text-teal-400 font-black uppercase tracking-widest">Self-Check: Critical Stress detected</p>
+</div>
+</div>
+</div>
+<div class="flex gap-2 w-full md:w-auto">
+<button onclick="reviewCase('Nature #2124')" class="flex-1 md:flex-none px-6 py-2.5 bg-primary text-slate-900 border border-primary rounded-lg text-sm font-black hover:scale-105 transition-all">
+    Deploy Support
+</button>
+</div>
+</div>
 </div>
 </section>
 <!-- NGO Visibility Hub -->
-<section id="ngo-hub-section" class="col-span-12 lg:col-span-5 bg-surface-container-low rounded-xl p-6 border border-outline-variant/5">
+<section id="ngo-hub-section" class="tilt-element col-span-12 lg:col-span-5 bg-surface-container-low rounded-xl p-6 border border-outline-variant/5">
 <div class="flex items-center gap-3 mb-8">
 <span class="material-symbols-outlined text-secondary" data-icon="analytics">analytics</span>
 <h2 class="text-xl font-bold font-headline">NGO Visibility Hub</h2>
@@ -285,7 +324,7 @@
 </div>
 </section>
 <!-- 1-1 Networking Workspace (Chat) -->
-<section class="col-span-12 lg:col-span-8 h-[500px] flex flex-col bg-surface-container-low rounded-xl overflow-hidden border border-outline-variant/5">
+<section class="tilt-element col-span-12 lg:col-span-8 h-[500px] flex flex-col bg-surface-container-low rounded-xl overflow-hidden border border-outline-variant/5">
 <div class="p-4 border-b border-outline-variant/10 flex items-center justify-between bg-surface-container-high/50">
 <div class="flex items-center gap-3">
 <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
@@ -856,6 +895,20 @@
             e.preventDefault();
             openDeepDive('New Intervention');
         });
+    }
+
+    function notify(message) {
+        const toast = document.createElement('div');
+        toast.className = "fixed bottom-12 left-1/2 -translate-x-1/2 px-8 py-4 glass-panel border border-[#44d8f1]/30 rounded-2xl shadow-2xl z-[100] animate-in fade-in slide-in-from-bottom-10 duration-500 flex items-center gap-3";
+        toast.innerHTML = `
+            <span class="material-symbols-outlined text-[#44d8f1]">info</span>
+            <span class="text-sm font-bold text-[#dde3ed]">${message}</span>
+        `;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.classList.add('animate-out', 'fade-out', 'slide-out-to-bottom-10');
+            setTimeout(() => toast.remove(), 500);
+        }, 3000);
     }
 </script>
 </body></html>
