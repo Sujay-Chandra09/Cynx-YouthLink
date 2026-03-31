@@ -59,11 +59,11 @@ export default function GroupLobby() {
   const handleJoinDefault = () => {
     const roomId = `group_${mood}_default`;
     const interactiveName = encodeURIComponent(defaultGroupNames[mood] || `${mood} General Space`);
-    navigate(`/chat/${roomId}?type=group&mood=${mood}&groupName=${interactiveName}`);
+    navigate(`/youth/chat/${roomId}?type=group&mood=${mood}&groupName=${interactiveName}`);
   };
 
   const handleJoinCustom = (groupId, groupName) => {
-    navigate(`/chat/${groupId}?type=group&mood=${mood}&groupName=${encodeURIComponent(groupName)}`);
+    navigate(`/youth/chat/${groupId}?type=group&mood=${mood}&groupName=${encodeURIComponent(groupName)}`);
   };
 
   const handleCreateGroup = async (e) => {
@@ -86,7 +86,7 @@ export default function GroupLobby() {
     }
   };
 
-  if (!mood) return <Navigate to="/" />;
+  if (!mood) return <Navigate to="/youth" />;
 
   return (
     <div className="font-body min-h-screen bg-[#0f172a] text-slate-200 flex flex-col items-center p-6 relative overflow-x-hidden md:py-12">
@@ -97,7 +97,7 @@ export default function GroupLobby() {
         
         {/* Header Section */}
         <div className="glass-panel p-8 md:p-10 rounded-[2.5rem] border border-white/5 bg-slate-900/60 backdrop-blur-xl shadow-2xl relative">
-          <button onClick={() => navigate(-1)} className="absolute top-6 left-6 text-slate-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold z-20">
+          <button onClick={() => navigate('/youth/moods')} className="absolute top-6 left-6 text-slate-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold z-20">
             <ArrowLeft size={16} /> Hub
           </button>
           

@@ -12,7 +12,7 @@ export default function MoodSelector() {
   const navigate = useNavigate();
 
   const handleMoodSelect = (moodId) => {
-    navigate(`/lobby/${moodId}`);
+    navigate(`/youth/lobby/${moodId}`);
   };
 
   return (
@@ -22,8 +22,8 @@ export default function MoodSelector() {
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-sky-500/10 blur-[100px] rounded-full translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
 
       <div className="w-full max-w-lg relative z-10 glass-panel p-10 md:p-14 rounded-[3rem] border border-white/5 bg-slate-900/60 backdrop-blur-xl shadow-2xl text-center">
-        <button onClick={() => navigate(-1)} className="absolute top-8 left-8 text-slate-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold z-20">
-            <ArrowLeft size={16} /> Back
+        <button onClick={() => navigate('/youth')} className="absolute top-8 left-8 text-slate-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold z-20">
+            <ArrowLeft size={16} /> Back to Hub
         </button>
         <span className="inline-block mt-8 mb-4 px-4 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-[10px] font-black uppercase tracking-[0.3em]">
           Safe Space Check-In

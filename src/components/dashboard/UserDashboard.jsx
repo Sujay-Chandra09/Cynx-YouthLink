@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCursorGlow } from '../../hooks/useCursorGlow';
 import './dashboard.css';
@@ -18,6 +18,14 @@ const UserDashboard = () => {
     const navigate = useNavigate();
     const { logout } = useAuth();
     const [activeTab, setActiveTab] = useState('home');
+    const location = useLocation();
+
+    const handleTabSwitch = (tabName) => {
+        setActiveTab(tabName);
+        if (location.pathname !== '/youth' && location.pathname !== '/youth/') {
+            navigate('/youth');
+        }
+    };
 
     useCursorGlow();
 
@@ -49,44 +57,44 @@ const UserDashboard = () => {
                 </div>
                 
                 <nav className="flex-1 px-4 space-y-2 mt-8">
-                    <button onClick={() => setActiveTab('home')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'home' ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
+                    <button onClick={() => handleTabSwitch('home')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'home' && (location.pathname === '/youth' || location.pathname === '/youth/') ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
                         <span className="material-symbols-outlined font-black">home</span>
                         <span className="hidden lg:block text-sm font-black uppercase tracking-widest">Home Hub</span>
                     </button>
-                    <button onClick={() => setActiveTab('profile')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'profile' ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
+                    <button onClick={() => handleTabSwitch('profile')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'profile' && (location.pathname === '/youth' || location.pathname === '/youth/') ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
                         <span className="material-symbols-outlined">account_circle</span>
                         <span className="hidden lg:block text-sm">Profile Settings</span>
                     </button>
                     <div className="h-px bg-white/5 my-4 mx-4"></div>
-                    <button onClick={() => setActiveTab('schedule')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'schedule' ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
+                    <button onClick={() => handleTabSwitch('schedule')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'schedule' && (location.pathname === '/youth' || location.pathname === '/youth/') ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
                         <span className="material-symbols-outlined">event</span>
                         <span className="hidden lg:block text-sm">Week Hub</span>
                     </button>
-                    <button onClick={() => setActiveTab('sleep')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'sleep' ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
+                    <button onClick={() => handleTabSwitch('sleep')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'sleep' && (location.pathname === '/youth' || location.pathname === '/youth/') ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
                         <span className="material-symbols-outlined">bedtime</span>
                         <span className="hidden lg:block text-sm">Sleep Tracker</span>
                     </button>
-                    <button onClick={() => setActiveTab('journal')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'journal' ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
+                    <button onClick={() => handleTabSwitch('journal')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'journal' && (location.pathname === '/youth' || location.pathname === '/youth/') ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
                         <span className="material-symbols-outlined">auto_stories</span>
                         <span className="hidden lg:block text-sm">My Journal</span>
                     </button>
-                    <button onClick={() => setActiveTab('mentor')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'mentor' ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
+                    <button onClick={() => handleTabSwitch('mentor')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'mentor' && (location.pathname === '/youth' || location.pathname === '/youth/') ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
                         <span className="material-symbols-outlined">forum</span>
                         <span className="hidden lg:block text-sm">Message Mentor</span>
                     </button>
-                    <button onClick={() => setActiveTab('query')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'query' ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
+                    <button onClick={() => handleTabSwitch('query')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'query' && (location.pathname === '/youth' || location.pathname === '/youth/') ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
                         <span className="material-symbols-outlined">quiz</span>
                         <span className="hidden lg:block text-sm">Self-Check</span>
                     </button>
-                    <button onClick={() => setActiveTab('trends')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'trends' ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
+                    <button onClick={() => handleTabSwitch('trends')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'trends' && (location.pathname === '/youth' || location.pathname === '/youth/') ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
                         <span className="material-symbols-outlined">monitoring</span>
                         <span className="hidden lg:block text-sm">Neural History</span>
                     </button>
-                    <button onClick={() => setActiveTab('ai-chat')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'ai-chat' ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
+                    <button onClick={() => handleTabSwitch('ai-chat')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${activeTab === 'ai-chat' && (location.pathname === '/youth' || location.pathname === '/youth/') ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
                         <span className="material-symbols-outlined">smart_toy</span>
                         <span className="hidden lg:block text-sm">Companion AI</span>
                     </button>
-                    <button onClick={() => navigate('/moods')} className="w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group text-slate-400 hover:bg-white/5 border border-transparent">
+                    <button onClick={() => navigate('/youth/moods')} className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group ${location.pathname.includes('/youth/moods') || location.pathname.includes('/youth/lobby') || location.pathname.includes('/youth/chat') ? 'bg-teal-500 text-slate-900 border border-teal-500/20 shadow-[0_0_20px_rgba(13,148,136,0.2)]' : 'text-slate-400 hover:bg-white/5 border border-transparent'}`}>
                         <span className="material-symbols-outlined">groups</span>
                         <span className="hidden lg:block text-sm">Group Chat</span>
                     </button>
@@ -101,15 +109,21 @@ const UserDashboard = () => {
             </aside>
 
             <main id="app" className="lg:ml-64 h-screen relative z-10 w-[calc(100%-5rem)] lg:w-[calc(100%-16rem)] overflow-y-auto overflow-x-hidden scroll-smooth">
-                {activeTab === 'home' && <HomeTab setActiveTab={setActiveTab} />}
-                {activeTab === 'schedule' && <ScheduleTab />}
-                {activeTab === 'sleep' && <SleepTrackerTab />}
-                {activeTab === 'journal' && <JournalTab />}
-                {activeTab === 'mentor' && <MentorUplinkTab />}
-                {activeTab === 'query' && <SelfCheckTab />}
-                {activeTab === 'trends' && <NeuralHistoryTab />}
-                {activeTab === 'ai-chat' && <CompanionAITab />}
-                {activeTab === 'profile' && <ProfileTab />}
+                {(location.pathname === '/youth' || location.pathname === '/youth/') ? (
+                    <>
+                        {activeTab === 'home' && <HomeTab setActiveTab={setActiveTab} />}
+                        {activeTab === 'schedule' && <ScheduleTab />}
+                        {activeTab === 'sleep' && <SleepTrackerTab />}
+                        {activeTab === 'journal' && <JournalTab />}
+                        {activeTab === 'mentor' && <MentorUplinkTab />}
+                        {activeTab === 'query' && <SelfCheckTab />}
+                        {activeTab === 'trends' && <NeuralHistoryTab />}
+                        {activeTab === 'ai-chat' && <CompanionAITab />}
+                        {activeTab === 'profile' && <ProfileTab />}
+                    </>
+                ) : (
+                    <Outlet />
+                )}
             </main>
         </div>
     );

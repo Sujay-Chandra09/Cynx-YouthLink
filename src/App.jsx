@@ -36,16 +36,16 @@ function AppRoutes() {
       <Route 
         path="/youth" 
         element={currentUser ? <UserDashboard /> : <Navigate to="/login" />} 
-      />
+      >
+        {/* Nested Chat Routes so UserDashboard acts as Layout */}
+        <Route path="moods" element={<MoodSelector />} />
+        <Route path="lobby/:mood" element={<GroupLobby />} />
+        <Route path="chat/:roomId" element={<ChatRoom user={guestUser} />} />
+      </Route>
       <Route 
         path="/mentor" 
         element={currentUser ? <MentorDashboard /> : <Navigate to="/login" />} 
       />
-      
-      {/* Existing Chat Routes (accessible after mood selection) */}
-      <Route path="/moods" element={<MoodSelector />} />
-      <Route path="/lobby/:mood" element={<GroupLobby />} />
-      <Route path="/chat/:roomId" element={<ChatRoom user={guestUser} />} />
       
       {/* Default Redirect */}
       <Route path="/" element={<Navigate to="/login" />} />

@@ -32,7 +32,7 @@ export default function ChatRoom({ user }) {
         
         // If the creator cancelled this room, boot the other person if they somehow joined
         if (data.status === 'cancelled') {
-           navigate('/');
+           navigate('/youth');
         }
       } else {
         // Fallback if room doc not loaded yet but we have params
@@ -108,7 +108,7 @@ export default function ChatRoom({ user }) {
   };
 
   const handleLeave = async () => {
-    navigate(-1);
+    navigate('/youth/moods');
   };
 
   return (
