@@ -1,3 +1,4 @@
+
 # 🌌 YouthLink: Digital Mental Health Ecosystem
 **CodeNyx Hackathon | Track: HealthTech & Social Impact**  
 *Building a world where asking for help is strength, not fear.*
@@ -57,3 +58,21 @@ By providing anonymous help-seeking channels and early intervention mechanisms, 
 - **User Login:** Accesses the Private User Hub where they can journal, chat with AI, or connect with a human bridge.
 - **Mentor Login (NGO):** Redirects seamlessly to the NGO Wellbeing Dashboard (Mentor Portal) granting professional administrative oversight and data monitoring privileges.
 - **Emergency Protocol:** Instant access to global crisis lifelines from any page in the hub.
+=======
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
